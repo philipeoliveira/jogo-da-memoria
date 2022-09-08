@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+         name="description"
+         content="Tradicional Jogo da Memória onde todas
+      as cartas estão viradas e o jogador a cada rodada tenta desvirar duas
+      iguais, o objetivo é desvirar todas as cartas com menos tentativas
+      possíveis."
+      />
+      <meta name="author" content="Philipe Oliveira" />
+
+      <link
+         rel="shortcut icon"
+         href="./images/favicon.ico"
+         type="image/x-icon"
+      />
+      <link rel="stylesheet" href="./css/global.css" />
+      <link rel="stylesheet" href="./css/login.css" />
+
+      <script defer src="./js/login.js"></script>
+
+      <title>Jogo da Memória | Entrar</title>
+   </head>
+   <body>
+      <div class="page-container login-page-container flex-col-center">
+         <header>
+            <figure class="flex-col-center">
+               <img
+                  src="./images/icone-pensando.png"
+                  alt="Ícone com desenho de um jovem pensando"
+                  class="login-page-logo"
+               />
+               <figcaption hidden>
+                  Fonte da imagem:
+                  www.flaticon.com/br/icone-gratis/tarefas-diarias_3588723
+               </figcaption>
+            </figure>
+            <h1>Jogo da Memória</h1>
+         </header>
+         <main>
+            <form class="login-form flex-col-center">
+               <label for="player">Nome do jogador</label>
+               <input
+                  type="text"
+                  id="player"
+                  name="player"
+                  placeholder="Nome do jogador"
+                  maxlength="20"
+                  required
+                  aria-required="true"
+               />
+               <button
+                  type="submit"
+                  disabled
+                  data-message="Botão para entrar na página do jogo"
+               >
+                  Jogar
+               </button>
+            </form>
+         </main>
+         <footer class="secondary-text">
+            Desenvolvido por
+            <a
+               href="https://github.com/philipeoliveira"
+               title="Abrir em nova janela o GitHub do autor Philipe Oliveira"
+               target="_blank"
+               >Philipe Oliveira</a
+            >
+         </footer>
+      </div>
+   </body>
+</html>

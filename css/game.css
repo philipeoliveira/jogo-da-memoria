@@ -1,0 +1,157 @@
+.game-page-container {
+   max-width: 640px;
+}
+.game-page-container header {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   padding: 0 5px;
+   gap: 20px;
+}
+.game-page-logo {
+   max-width: 120px;
+}
+.game-header-content {
+   width: 100%;
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+.game-page-container h1 {
+   font-size: 1.5em;
+   text-indent: 10px;
+}
+.game-actions {
+   display: flex;
+   align-items: end;
+   gap: 15px;
+}
+.game-info {
+   width: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   background-color: var(--color-disabled);
+   border-radius: 8px;
+   padding: 8px 15px;
+   font-size: 0.8em;
+   box-shadow: 1px 1px 1px var(--color-opacity);
+}
+.game-info i {
+   color: var(--color-primary);
+}
+.game-restart {
+   font-size: 1em;
+   border-radius: 8px;
+   padding: 5px;
+}
+.game-restart:hover i {
+   animation: rotate 250ms ease-in;
+}
+
+.game-page-container main {
+   display: flex;
+   flex-direction: column;
+   gap: 20px;
+}
+.game-feedback {
+   color: var(--color-opacity);
+   font-size: 0.8em;
+   border: 2px solid var(--color-disabled);
+   border-radius: 10px;
+   padding: 10px 20px;
+}
+.grid-cards {
+   width: 100%;
+   background-color: var(--color-disabled);
+   display: grid;
+   grid-template-columns: repeat(5, 1fr);
+   gap: 15px;
+   padding: 15px;
+   border-radius: 10px;
+}
+.card {
+   aspect-ratio: 3/4;
+   width: 100%;
+   position: relative;
+   border-radius: 10px;
+   transition: transform 400ms ease;
+   transform-style: preserve-3d;
+}
+.face {
+   width: 100%;
+   height: 100%;
+   position: absolute;
+   background-color: var(--color-opacity);
+   background-size: cover;
+   background-position: center;
+   border: 2px solid var(--color-opacity);
+   border-radius: 10px;
+   transition: all 1000ms ease;
+}
+.front-face {
+   transform: rotateY(180deg);
+}
+.back-face {
+   /**
+   * FONTE DO ÍCONE NA IMAGEM card-default.png
+   * www.flaticon.com/br/icone-gratis/programacao_2721284
+   */
+   background-image: url('../images/card-default.png');
+   backface-visibility: hidden;
+}
+.reveal-card {
+   transform: rotateY(180deg);
+}
+.disabled-card {
+   filter: saturate(0);
+   opacity: 0.5;
+}
+.handle-card-hover {
+   cursor: pointer;
+}
+.handle-card-hover:hover {
+   outline: 1px inset var(--color-opacity);
+}
+.text-alert {
+   animation: text-alert 1s infinite;
+}
+.box-alert {
+   animation: box-alert 1s infinite;
+}
+
+@keyframes text-alert {
+   to {
+      color: var(--color-hover);
+   }
+}
+@keyframes box-alert {
+   to {
+      outline: 2px inset var(--color-hover);
+   }
+}
+@keyframes rotate {
+   to {
+      transform: rotate(360deg);
+   }
+}
+@keyframes fade-in {
+   0% {
+      opacity: 0;
+   }
+   80% {
+      opacity: 1;
+   }
+   85% {
+      opacity: 0.5;
+   }
+   90% {
+      opacity: 1;
+   }
+   95% {
+      opacity: 0.5;
+   }
+   100% {
+      opacity: 1;
+   }
+}

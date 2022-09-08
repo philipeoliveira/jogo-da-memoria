@@ -1,0 +1,294 @@
+const attemptCounterText = document.querySelector('.attempt-counter p');
+const timer = document.querySelector('.timer');
+const gameFeedback = document.querySelector('.game-feedback');
+const gameFeedbackText = document.querySelector('.game-feedback p');
+const gameFeedbackIcon = document.querySelector('.game-feedback i');
+const gridCards = document.querySelector('.grid-cards');
+const player = localStorage.getItem('player');
+
+let firstCard = '';
+let secondCard = '';
+
+// contador de tentativas
+let attemptCounter = 0;
+
+/**
+ * NOMES DOS ARQUIVOS DE IMAGEM
+ */
+const cardImages = [
+   'card-angular',
+   'card-css',
+   'card-html',
+   'card-js',
+   'card-laravel',
+   'card-node',
+   'card-php',
+   'card-python',
+   'card-react',
+   'card-ts',
+];
+
+const createElement = (tag, className) => {
+   const element = document.createElement(tag);
+   element.className = className;
+   return element;
+};
+
+/**
+ * CURSOR POINTER QUANDO A CARTA NÃO ESTÁ REVELADA,
+ * CURSOR PADRÃO PARA AS OUTRAS OPÇÕES,
+ * OUTLINE NO HOVER DAS CARTAS NÃO REVELADAS
+ */
+const handleCardHover = (cards) => {
+   cards.forEach((card) => {
+      // se a carta estiver revelada
+      if (card.className.includes('reveal-card')) {
+         card.classList.remove('handle-card-hover');
+      } else {
+         card.classList.add('handle-card-hover');
+      }
+   });
+};
+
+/**
+ * MENSAGEM FINAL
+ */
+const finalMessage = (icon, message, color) => {
+   setTimeout(() => {
+      gameFeedback.style.animation = 'fade-in 1.5s ease';
+      gameFeedback.style.border = `2px solid ${color}`;
+      gameFeedback.style.color = `${color}`;
+      gameFeedbackIcon.setAttribute('class', `${icon}`);
+      gameFeedbackText.innerHTML = `${message}`;
+   }, 400);
+};
+
+/**
+ * VERIFICA E TRATA O FIM DO JOGO
+ */
+const checkEndGame = () => {
+   const disabledCards = document.querySelectorAll('.disabled-card');
+
+   // verifica se a quantidade de cartas desabilitadas é igual ao total de cartas
+   if (disabledCards.length === cardImages.length * 2) {
+      // limpa a contagem do tempo do jogo
+      clearInterval(loop);
+
+      setTimeout(() => {
+         // mostra cards desabilitados em cores
+         disabledCards.forEach((disabledCard) => {
+            disabledCard.classList.remove('disabled-card');
+         });
+
+         // leva para o topo da tela suavemente
+         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+         finalMessage(
+            'ph-confetti',
+            `Venceu! Parabéns, ${player ? player : 'Anônimo!'}`,
+            'var(--color-primary)'
+         );
+      }, 200);
+
+      // zera a contagem de tentativas de match
+      attemptCounter = 0;
+   }
+};
+
+/**
+ * VERIFICA SE AS CARTAS SÃO IGUAIS (MATCH),
+ * REALIZA AÇÃO CORRESPONDENTE,
+ * CHAMA A FUNÇÃO QUE VERIFICA O FIM DO JOGO
+ */
+const checkCards = () => {
+   const firstImage = firstCard.getAttribute('data-card-image');
+   const secondImage = secondCard.getAttribute('data-card-image');
+
+   if (firstImage === secondImage) {
+      // desabilita porque SÃO IGUAIS
+      firstCard.firstChild.classList.add('disabled-card');
+      secondCard.firstChild.classList.add('disabled-card');
+
+      // zera as variáveis permitindo uma nova rodada
+      firstCard = '';
+      secondCard = '';
+
+      setTimeout(() => {
+         // verifica se é o fim do jogo
+         checkEndGame();
+      }, 1000);
+   } else {
+      // esconde as cartas novamente porque SÃO DIFERENTES
+      setTimeout(() => {
+         firstCard.classList.remove('reveal-card');
+         secondCard.classList.remove('reveal-card');
+
+         handleCardHover([firstCard, secondCard]);
+
+         // zera as variáveis permitindo uma nova rodada
+         firstCard = '';
+         secondCard = '';
+      }, 1000);
+   }
+};
+
+/**
+ * ARMAZENA TENTATIVAS DE MATCH,
+ * INFORMA QUANTIDADE DE TENTATIVAS
+ */
+const handleAttemptCounter = () => {
+   attemptCounter = attemptCounter + 1;
+
+   attemptCounterText.innerHTML =
+      attemptCounter === 1
+         ? `${attemptCounter} tentativa`
+         : `${attemptCounter} tentativas`;
+};
+
+/**
+ * REVELA AS CARTAS DO MATCH,
+ * CHAMA A FUNÇÃO QUE TRATA DAS TENTATIVAS DE MATCH
+ * CHAMA A FUNÇÃO QUE VERIFICA O MATCH
+ */
+const revealCard = ({ target }) => {
+   // reafirma que a carta só será virada se já não estiver virada
+   if (target.parentNode.className.includes('reveal-card')) {
+      return;
+   }
+
+   // verificar qual é a carta, revela e armazena
+   if (firstCard === '') {
+      target.parentNode.classList.add('reveal-card');
+      firstCard = target.parentNode;
+   } else if (secondCard === '') {
+      target.parentNode.classList.add('reveal-card');
+      secondCard = target.parentNode;
+
+      handleAttemptCounter();
+
+      checkCards();
+   }
+
+   handleCardHover([target.parentNode]);
+};
+
+/**
+ * CRIA CARTA
+ */
+const createCard = (cardImage) => {
+   const cardElement = createElement('div', 'card handle-card-hover');
+   const frontFace = createElement('div', 'face front-face');
+   const backFace = createElement('div', 'face back-face');
+
+   cardElement.appendChild(frontFace);
+   cardElement.appendChild(backFace);
+
+   // cria a imagem frontal da carta
+   frontFace.style.backgroundImage = `url(../images/${cardImage}.png)`;
+
+   // cria identificação para cada carta
+   cardElement.setAttribute('data-card-image', cardImage);
+
+   cardElement.addEventListener('click', revealCard);
+
+   return cardElement;
+};
+
+/**
+ * DUPLICA E GERA AS CARTAS EM ORDEM ALEATÓRIA
+ */
+const loadGame = () => {
+   const duplicateImages = [...cardImages, ...cardImages];
+   const shuffledImages = duplicateImages.sort(() => Math.random() - 0.5);
+
+   shuffledImages.forEach((cardImage) => {
+      const card = createCard(cardImage);
+      gridCards.appendChild(card);
+   });
+};
+
+/**
+ * FORMATA O TIMER
+ */
+const formatTimer = (timerInMs) => {
+   const seconds = parseInt((timerInMs / 1000) % 60);
+   const minutes = parseInt((timerInMs / (1000 * 60)) % 60);
+
+   if (minutes > 0) {
+      return `${minutes.toString().padStart(2, '0')}:${seconds
+         .toString()
+         .padStart(2, '0')}`;
+   }
+   if (seconds > 0) {
+      return `00:${seconds.toString().padStart(2, '0')}`;
+   }
+
+   // estado inicial do timer
+   return '00:00';
+};
+
+/**
+ * LIMITA O TEMPO MÁXIMO DE JOGO PARA 60 MINUTOS
+ */
+const checkTimeLimit = () => {
+   // insere efeitos visuais para alertar a proximidade do tempo limite
+   if (timer.innerHTML > '59:00') {
+      timer.parentNode.classList.add('text-alert');
+      gridCards.classList.add('box-alert');
+   }
+   // 59:00 a 59:58
+   if (timer.innerHTML > '59:58') {
+      // parando o timer
+      clearInterval(loop);
+
+      setTimeout(() => {
+         // remove os efeitos visuais do tempo limite
+         timer.parentNode.classList.remove('text-alert');
+         gridCards.classList.remove('box-alert');
+
+         // leva para o topo da tela suavemente
+         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+
+         finalMessage(
+            'ph-smiley-sad',
+            'Tempo esgotado...',
+            'var(--color-hover)'
+         );
+      }, 200);
+
+      // zera a contagem de tentativas de match
+      attemptCounter = 0;
+   }
+};
+
+/**
+ * TIMER DO JOGO
+ */
+const timerOn = () => {
+   // cria número de milisegundos decorridos desde 1/1/1970
+   const startTimer = Date.now();
+
+   // insere no this uma chave chamada loop para recuperá-la externamente
+   this.loop = setInterval(() => {
+      timer.innerHTML = formatTimer(Date.now() - startTimer);
+
+      checkTimeLimit();
+   }, 100);
+};
+
+/**
+ * INSERE O NOME DO JOGADOR,
+ * CARREGA O TIMER,
+ * CARREGA TODAS AS CARTAS DO JOGO
+ */
+window.onload = () => {
+   if (player) {
+      gameFeedbackText.innerHTML = `Boa sorte, ${player}!`;
+   } else {
+      gameFeedbackText.innerHTML = 'Boa sorte, Anônimo!';
+   }
+
+   timerOn();
+
+   loadGame();
+};

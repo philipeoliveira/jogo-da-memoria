@@ -1,0 +1,127 @@
+/* FONT */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* VARIABLES */
+:root {
+   --color-background: #000803;
+   --color-primary: #70d6f9;
+   --color-secondary: #c0ac7e;
+   --color-text: #efefef;
+   --color-hover: #f36b26;
+   --color-disabled: #383838;
+   --color-opacity: rgba(255, 255, 255, 0.4);
+}
+
+/* RESET */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Press Start 2P', cursive, sans-serif;
+   font-weight: normal;
+   list-style: none;
+   border: none;
+   outline: none;
+}
+
+/* GLOBAL */
+body {
+   background-color: var(--color-background);
+   color: var(--color-text);
+}
+h1 {
+   font-size: 1.4em;
+   color: var(--color-primary);
+}
+main {
+   width: 100%;
+}
+
+label {
+   display: none;
+}
+input {
+   width: 100%;
+   border: 2px solid var(--color-primary);
+   border-radius: 20px;
+   background-color: transparent;
+   color: var(--color-text);
+   padding: 12px 22px;
+   text-align: center;
+   transition: border-color 0.3s;
+}
+input:hover,
+input:focus,
+input:active {
+   border-color: var(--color-hover);
+}
+button {
+   cursor: pointer;
+   border-radius: 20px;
+   background-color: var(--color-secondary);
+   color: var(--color-background);
+   transition: background-color 0.3s;
+}
+button:hover,
+button:focus {
+   background-color: var(--color-hover);
+}
+button:disabled {
+   background-color: var(--color-disabled);
+   cursor: initial;
+}
+button.active:active {
+   opacity: 0.8;
+}
+
+a {
+   font-family: sans-serif;
+   font-size: 1em;
+   text-decoration: none;
+   transition: color 0.2s;
+}
+a:visited {
+   color: var(--color-disabled);
+}
+a:hover,
+a:focus,
+a:active {
+   color: var(--color-hover);
+}
+a:active,
+a:focus img {
+   opacity: 0.8;
+}
+
+.flex-col-center {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+}
+.page-container {
+   margin: 0 auto;
+   padding: 20px;
+   gap: 20px;
+}
+
+.secondary-text {
+   font-family: sans-serif;
+   font-size: 0.75em;
+   color: var(--color-disabled);
+}
+.secondary-text a {
+   border-bottom: 1px dotted;
+}
+.secondary-text a:active {
+   border-bottom: 1px solid;
+}
+
+.iconAndText {
+   display: flex;
+   align-items: baseline;
+   gap: 0.8em;
+}
+.iconAndText i {
+   font-size: 1.2em;
+}

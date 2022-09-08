@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta
+         name="description"
+         content="Tradicional Jogo da Memória onde todas
+      as cartas estão viradas e o jogador a cada rodada tenta desvirar duas
+      iguais, o objetivo é desvirar todas as cartas com menos tentativas
+      possíveis."
+      />
+      <meta name="author" content="Philipe Oliveira" />
+
+      <link
+         rel="shortcut icon"
+         href="../images/favicon.ico"
+         type="image/x-icon"
+      />
+      <link rel="stylesheet" href="../css/global.css" />
+      <link rel="stylesheet" href="../css/game.css" />
+
+      <script defer src="https://unpkg.com/phosphor-icons"></script>
+      <script defer src="../js/game.js"></script>
+
+      <title>Jogo da Memória</title>
+   </head>
+   <body>
+      <div class="page-container game-page-container flex-col-center">
+         <header>
+            <a href="../index.html" title="Ir para página de Login">
+               <figure class="flex-col-center">
+                  <img
+                     src="../images/icone-pensando.png"
+                     alt="Ícone com desenho de um jovem pensando"
+                     class="game-page-logo"
+                  />
+                  <figcaption hidden>
+                     Fonte da imagem:
+                     www.flaticon.com/br/icone-gratis/tarefas-diarias_3588723
+                  </figcaption>
+               </figure>
+            </a>
+            <div class="game-header-content">
+               <h1>Jogo da Memória</h1>
+               <div class="game-actions">
+                  <div class="game-info">
+                     <span class="iconAndText attempt-counter">
+                        <i class="ph-crosshair"></i>
+                        <p>0 tentativa</p>
+                     </span>
+                     <span class="iconAndText">
+                        <i class="ph-timer"></i>
+                        <p class="timer"></p>
+                     </span>
+                  </div>
+                  <button
+                     onClick="window.location.reload()"
+                     title="Reiniciar o jogo"
+                     class="iconAndText game-restart active"
+                  >
+                     <i class="ph-arrow-clockwise"></i>
+                  </button>
+               </div>
+            </div>
+         </header>
+         <main>
+            <div class="game-feedback">
+               <span class="iconAndText">
+                  <i class="ph-smiley"></i>
+                  <p></p>
+               </span>
+            </div>
+            <div class="grid-cards"></div>
+         </main>
+         <footer class="secondary-text">
+            Desenvolvido por
+            <a
+               href="https://github.com/philipeoliveira"
+               title="Abrir em nova janela o GitHub do autor Philipe Oliveira"
+               target="_blank"
+               >Philipe Oliveira</a
+            >
+         </footer>
+      </div>
+   </body>
+</html>
