@@ -121,13 +121,22 @@
 }
 
 @keyframes text-alert {
-   to {
+   0% {
       color: var(--color-hover);
+      text-shadow: 0 0 5px var(--color-hover);
+   }
+   100% {
+      color: var(--color-opacity);
    }
 }
 @keyframes box-alert {
-   to {
-      outline: 2px inset var(--color-hover);
+   0% {
+      outline: 1px inset var(--color-hover);
+      box-shadow: 0 0 10px var(--color-hover);
+   }
+   100% {
+      outline: 1px inset var(--color-background);
+      box-shadow: 0 0 10px var(--color-background);
    }
 }
 @keyframes rotate {
