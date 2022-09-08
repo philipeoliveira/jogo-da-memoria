@@ -85,7 +85,7 @@ const checkEndGame = () => {
 
          finalMessage(
             'ph-confetti',
-            `Venceu! Parabéns, ${player ? player : 'Anônimo!'}`,
+            `Venceu! Parabéns, ${player ? player + '!' : 'Anônimo!'}`,
             'var(--color-primary)'
          );
       }, 200);
@@ -233,7 +233,7 @@ const formatTimer = (timerInMs) => {
 const checkTimeLimit = () => {
    // insere efeitos visuais para alertar a proximidade do tempo limite
    if (timer.innerHTML > '59:00') {
-      timer.parentNode.classList.add('text-alert');
+      timer.classList.add('text-alert');
       gridCards.classList.add('box-alert');
    }
    // 59:00 a 59:58
@@ -243,8 +243,10 @@ const checkTimeLimit = () => {
 
       setTimeout(() => {
          // remove os efeitos visuais do tempo limite
-         timer.parentNode.classList.remove('text-alert');
+         timer.classList.remove('text-alert');
          gridCards.classList.remove('box-alert');
+         // adiciona cor de alerta ao timer
+         timer.style.color = 'var(--color-hover)';
 
          // leva para o topo da tela suavemente
          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
