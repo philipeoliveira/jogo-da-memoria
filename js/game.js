@@ -1,13 +1,16 @@
+const player = localStorage.getItem('player');
 const attemptCounterText = document.querySelector('.attempt-counter p');
 const timer = document.querySelector('.timer');
 const gameFeedback = document.querySelector('.game-feedback');
 const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
 const gridCards = document.querySelector('.grid-cards');
-const player = localStorage.getItem('player');
 
 let firstCard = '';
 let secondCard = '';
+
+let alertTime = '59:00'; // 59:00
+let limitTime = '59:59'; // 59:59
 
 // contador de tentativas
 let attemptCounter = 0;
@@ -35,8 +38,9 @@ const createElement = (tag, className) => {
 };
 
 /**
+ * CURSOR PADRÃO PARA AS CARTAS REVELADAS,
+ * CARTAS DESABILITADAS DEPOIS DO TEMPO LIMITE,
  * CURSOR POINTER QUANDO A CARTA NÃO ESTÁ REVELADA,
- * CURSOR PADRÃO PARA AS OUTRAS OPÇÕES,
  * OUTLINE NO HOVER DAS CARTAS NÃO REVELADAS
  */
 const handleCardHover = (cards) => {
@@ -44,6 +48,9 @@ const handleCardHover = (cards) => {
       // se a carta estiver revelada
       if (card.className.includes('reveal-card')) {
          card.classList.remove('handle-card-hover');
+      } else if (timer.innerHTML >= limitTime) {
+         card.classList.remove('handle-card-hover');
+         card.classList.add('disabled-card');
       } else {
          card.classList.add('handle-card-hover');
       }
@@ -70,7 +77,11 @@ const checkEndGame = () => {
    const disabledCards = document.querySelectorAll('.disabled-card');
 
    // verifica se a quantidade de cartas desabilitadas é igual ao total de cartas
-   if (disabledCards.length === cardImages.length * 2) {
+   // garante que essa mensagem só será mostrada dentro do tempo limite
+   if (
+      disabledCards.length === cardImages.length * 2 &&
+      timer.innerHTML < limitTime
+   ) {
       // limpa a contagem do tempo do jogo
       clearInterval(loop);
 
@@ -146,17 +157,21 @@ const handleAttemptCounter = () => {
 };
 
 /**
- * REVELA AS CARTAS DO MATCH,
- * CHAMA A FUNÇÃO QUE TRATA DAS TENTATIVAS DE MATCH
+ * LIDA COM A REVELAÇÃO DAS CARTAS,
+ * CHAMA A FUNÇÃO QUE TRATA DAS TENTATIVAS DE MATCH,
  * CHAMA A FUNÇÃO QUE VERIFICA O MATCH
  */
-const revealCard = ({ target }) => {
-   // reafirma que a carta só será virada se já não estiver virada
-   if (target.parentNode.className.includes('reveal-card')) {
+const handleRevealCard = ({ target }) => {
+   // garante que NÃO VIRA se já estiver revelada
+   // ou que NÃO REVELA se o limite de tempo já estiver sido atingido
+   if (
+      target.parentNode.className.includes('reveal-card') ||
+      timer.innerHTML >= limitTime
+   ) {
       return;
    }
 
-   // verificar qual é a carta, revela e armazena
+   // verificar qual é a carta, REVELA e armazena
    if (firstCard === '') {
       target.parentNode.classList.add('reveal-card');
       firstCard = target.parentNode;
@@ -173,7 +188,8 @@ const revealCard = ({ target }) => {
 };
 
 /**
- * CRIA CARTA
+ * CRIA AS CARTAS COM AS FACES,
+ * IDENTIFICA AS CARTAS
  */
 const createCard = (cardImage) => {
    const cardElement = createElement('div', 'card handle-card-hover');
@@ -189,7 +205,7 @@ const createCard = (cardImage) => {
    // cria identificação para cada carta
    cardElement.setAttribute('data-card-image', cardImage);
 
-   cardElement.addEventListener('click', revealCard);
+   cardElement.addEventListener('click', handleRevealCard);
 
    return cardElement;
 };
@@ -232,14 +248,20 @@ const formatTimer = (timerInMs) => {
  */
 const checkTimeLimit = () => {
    // insere efeitos visuais para alertar a proximidade do tempo limite
-   if (timer.innerHTML > '59:00') {
+   if (timer.innerHTML > alertTime) {
       timer.classList.add('text-alert');
       gridCards.classList.add('box-alert');
    }
-   // 59:00 a 59:58
-   if (timer.innerHTML > '59:58') {
+
+   // tempo limite
+   if (timer.innerHTML >= limitTime) {
+      const cardsHover = document.querySelectorAll('.handle-card-hover');
+
       // parando o timer
       clearInterval(loop);
+
+      // remove os efeitos de hover das cartas
+      handleCardHover(cardsHover);
 
       setTimeout(() => {
          // remove os efeitos visuais do tempo limite
