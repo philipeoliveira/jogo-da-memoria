@@ -20,6 +20,7 @@
       />
       <link rel="stylesheet" href="../css/global.css" />
       <link rel="stylesheet" href="../css/game.css" />
+      <link rel="stylesheet" href="../css/confetti.css" />
 
       <script defer src="https://unpkg.com/phosphor-icons"></script>
       <script defer src="../js/game.js"></script>
@@ -84,5 +85,15 @@
             >
          </footer>
       </div>
+      <canvas id="confetti-canvas"></canvas>
+
+      <!-- Confetti -->
+      <script src="../js/confetti.min.js"></script>
+      <script>
+         var confettiElement = document.getElementById('confetti-canvas');
+         var confettiSettings = { target: confettiElement };
+         var confetti = new ConfettiGenerator(confettiSettings);
+         confetti.render();
+      </script>
    </body>
 </html>

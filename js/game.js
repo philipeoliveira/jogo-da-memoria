@@ -75,6 +75,7 @@ const finalMessage = (icon, message, color) => {
  */
 const checkEndGame = () => {
    const disabledCards = document.querySelectorAll('.disabled-card');
+   const confetti = document.querySelector('#confetti-canvas');
 
    // verifica se a quantidade de cartas desabilitadas é igual ao total de cartas
    // garante que essa mensagem só será mostrada dentro do tempo limite
@@ -99,6 +100,9 @@ const checkEndGame = () => {
             `Venceu! Parabéns, ${player ? player + '!' : 'Anônimo!'}`,
             'var(--color-primary)'
          );
+
+         // habilita os confetes
+         confetti.classList.add('active');
       }, 200);
 
       // zera a contagem de tentativas de match
