@@ -1,6 +1,7 @@
 const player = localStorage.getItem('player');
 const attemptCounterText = document.querySelector('.attempt-counter p');
 const timer = document.querySelector('.timer');
+const gameRestart = document.querySelector('.game-restart');
 const gameFeedback = document.querySelector('.game-feedback');
 const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
@@ -103,6 +104,9 @@ const checkEndGame = () => {
 
          // habilita os confetes
          confetti.classList.add('active');
+
+         // insere efeito shake no botão que reinicia o jogo
+         gameRestart.classList.add('shake');
       }, 200);
 
       // zera a contagem de tentativas de match

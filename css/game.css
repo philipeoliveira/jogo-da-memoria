@@ -130,6 +130,9 @@
 .box-alert {
    animation: box-alert 1s infinite;
 }
+.shake {
+   animation: shake 3s infinite;
+}
 
 @keyframes text-alert {
    0% {
@@ -173,5 +176,27 @@
    }
    100% {
       opacity: 1;
+   }
+}
+@keyframes shake {
+   0% {
+      transform: translateX(0);
+   }
+   1%,
+   5% {
+      transform: translateX(-3px);
+   }
+   2%,
+   4%,
+   6% {
+      transform: translateX(0);
+      box-shadow: 0 0 20px var(--color-hover);
+   }
+   3%,
+   7% {
+      transform: translateX(3px);
+   }
+   8% {
+      transform: translateX(0);
    }
 }
