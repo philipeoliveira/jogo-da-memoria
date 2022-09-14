@@ -279,7 +279,7 @@ const checkTimeLimit = () => {
 
          finalMessage(
             'ph-smiley-sad',
-            'Tempo esgotado...',
+            'Tempo esgotado... <a href="../pages/game.html" title="Reiniciar o jogo">Tente novamente!</a>',
             'var(--color-hover)'
          );
       }, 200);

@@ -61,6 +61,17 @@
    border-radius: 10px;
    padding: 10px 20px;
 }
+.game-feedback a {
+   font-family: 'Press Start 2P', cursive, sans-serif;
+   color: var(--color-secondary);
+}
+.game-feedback a:hover,
+.game-feedback a:focus {
+   color: var(--color-hover);
+}
+.game-feedback a:active {
+   opacity: 0.8;
+}
 .grid-cards {
    width: 100%;
    background-color: var(--color-disabled);
