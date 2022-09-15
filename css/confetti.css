@@ -10,4 +10,15 @@
 }
 #confetti-canvas.active {
    visibility: visible;
+   animation: show-confetti 5s ease;
+}
+
+@keyframes show-confetti {
+   0%,
+   10% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
+   }
 }
