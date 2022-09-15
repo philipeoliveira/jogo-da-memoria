@@ -45,17 +45,21 @@ const createElement = (tag, className) => {
  * OUTLINE NO HOVER DAS CARTAS NÃO REVELADAS
  */
 const handleCardHover = (cards) => {
-   cards.forEach((card) => {
-      // se a carta estiver revelada
-      if (card.className.includes('reveal-card')) {
-         card.classList.remove('handle-card-hover');
-      } else if (timer.innerHTML >= limitTime) {
+   if (timer.innerHTML >= limitTime) {
+      cards.forEach((card) => {
          card.classList.remove('handle-card-hover');
          card.classList.add('disabled-card');
-      } else {
-         card.classList.add('handle-card-hover');
-      }
-   });
+      });
+   } else {
+      cards.forEach((card) => {
+         // se a carta estiver revelada
+         if (card.className.includes('reveal-card')) {
+            card.classList.remove('handle-card-hover');
+         } else {
+            card.classList.add('handle-card-hover');
+         }
+      });
+   }
 };
 
 /**
