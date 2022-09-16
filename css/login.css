@@ -21,3 +21,19 @@
    width: 100%;
    padding: 12px 22px;
 }
+
+@media (max-width: 479px) {
+   .login-page-container header {
+      gap: 15px;
+   }
+   .login-page-logo {
+      max-width: 100px;
+   }
+   .login-form {
+      margin-top: 5px;
+      gap: 10px;
+   }
+   .login-form button {
+      padding: 11px 18px;
+   }
+}
