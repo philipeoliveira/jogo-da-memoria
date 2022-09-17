@@ -206,7 +206,7 @@ const handleRevealCard = ({ target }) => {
  * IDENTIFICA AS CARTAS
  */
 const createCard = (cardImage) => {
-   const cardElement = createElement('div', 'card handle-card-hover');
+   const cardElement = createElement('li', 'card handle-card-hover');
    const frontFace = createElement('div', 'face front-face');
    const backFace = createElement('div', 'face back-face');
 
