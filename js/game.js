@@ -16,20 +16,22 @@ let limitTime = '59:59'; // 59:59
 // contador de tentativas
 let attemptCounter = 0;
 
+const cardTheme = 'programacao';
+
 /**
  * NOMES DOS ARQUIVOS DE IMAGEM
  */
 const cardImages = [
-   'card-angular',
-   'card-css',
-   'card-html',
-   'card-js',
-   'card-laravel',
-   'card-node',
-   'card-php',
-   'card-python',
-   'card-react',
-   'card-ts',
+   'card-01',
+   'card-02',
+   'card-03',
+   'card-04',
+   'card-05',
+   'card-06',
+   'card-07',
+   'card-08',
+   'card-09',
+   'card-10',
 ];
 
 const createElement = (tag, className) => {
@@ -212,7 +214,7 @@ const createCard = (cardImage) => {
    cardElement.appendChild(backFace);
 
    // cria a imagem frontal da carta
-   frontFace.style.backgroundImage = `url(../images/${cardImage}.png)`;
+   frontFace.style.backgroundImage = `url(../images/${cardTheme}/${cardImage}.png)`;
 
    // cria identificação para cada carta
    cardElement.setAttribute('data-card-image', cardImage);
