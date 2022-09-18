@@ -1,4 +1,5 @@
 const player = localStorage.getItem('player');
+const cardTheme = 'programacao';
 const attemptCounterText = document.querySelector('.attempt-counter p');
 const timer = document.querySelector('.timer');
 const gameRestart = document.querySelector('.game-restart');
@@ -15,8 +16,6 @@ let limitTime = '59:59'; // 59:59
 
 // contador de tentativas
 let attemptCounter = 0;
-
-const cardTheme = 'programacao';
 
 /**
  * NOMES DOS ARQUIVOS DE IMAGEM

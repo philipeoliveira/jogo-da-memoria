@@ -31,7 +31,7 @@ var confettiSettings = {
    colors: [
       [112, 214, 249], // blue
       [243, 107, 38], // orange
-      [192, 172, 126], // brown
+      [192, 172, 126], // gold
       [239, 239, 239], // white
    ],
    clock: '25',

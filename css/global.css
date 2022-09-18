@@ -37,7 +37,11 @@ main {
    width: 100%;
 }
 
+/* FORM */
 label {
+   cursor: pointer;
+}
+label.hidden {
    display: none;
 }
 input {
@@ -74,6 +78,7 @@ button.active:active {
    opacity: 0.8;
 }
 
+/* LINK */
 a {
    font-family: sans-serif;
    font-size: 1em;
@@ -93,6 +98,7 @@ a:focus img {
    opacity: 0.8;
 }
 
+/* ADDED GLOBALS */
 #particles-js {
    position: fixed;
    width: 100%;
@@ -122,13 +128,12 @@ a:focus img {
 .secondary-text a:active {
    border-bottom: 1px solid;
 }
-
-.iconAndText {
+.icon-text {
    display: flex;
    align-items: baseline;
    gap: 0.8em;
 }
-.iconAndText i {
+.icon-text i {
    font-size: 1.2em;
 }
 
@@ -145,18 +150,18 @@ a:focus img {
    button {
       border-radius: 18px;
    }
-   .iconAndText {
-      gap: 0.6em;
-   }
    .secondary-text {
       font-size: 0.6em;
    }
+   .icon-text {
+      gap: 0.6em;
+   }
 }
 @media (min-width: 480px) and (max-width: 767px) {
-   .iconAndText {
-      gap: 0.7em;
-   }
    .secondary-text {
       font-size: 0.7em;
+   }
+   .icon-text {
+      gap: 0.7em;
    }
 }

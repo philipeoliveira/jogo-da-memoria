@@ -1,3 +1,4 @@
+/* HEADER */
 .game-page-container {
    max-width: 640px;
 }
@@ -50,6 +51,7 @@
    animation: rotate 250ms ease-in;
 }
 
+/* BODY */
 .game-page-container main {
    display: flex;
    flex-direction: column;
