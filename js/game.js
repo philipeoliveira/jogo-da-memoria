@@ -1,5 +1,5 @@
 const player = localStorage.getItem('player');
-const cardTheme = 'programacao';
+const cardTheme = localStorage.getItem('theme');
 const attemptCounterText = document.querySelector('.attempt-counter p');
 const timer = document.querySelector('.timer');
 const gameRestart = document.querySelector('.game-restart');

@@ -1,10 +1,14 @@
-const input = document.querySelector('.login-form input');
-const placeholder = input.placeholder;
-const btn = document.querySelector('.login-form button');
 const form = document.querySelector('.login-form');
+const playerInput = document.querySelector('.login-form #player');
+const placeholder = playerInput.placeholder;
+const selectedInput = document.querySelector('.login-form #selected');
+const btn = document.querySelector('.login-form button');
 
+/**
+ * VALIDAÇÃO DE CARACTERES PARA HABILITAR BOTÃO SUBMIT
+ */
 const validateInput = ({ target }) => {
-   if (target.value.length > 1) {
+   if (target.value.trim().length > 1) {
       btn.removeAttribute('disabled');
       btn.classList.add('active');
    } else {
@@ -13,15 +17,25 @@ const validateInput = ({ target }) => {
    }
 };
 
+/**
+ * GRAVA NO LOCALSTORAGE O NOME DO PLAYER,
+ * E O ID DO TEMA ESCOLHIDO (RECEBIDO POR DATASET),
+ * ACESSA PÁGINA DO JOGO
+ */
 const handleSubmit = (event) => {
    event.preventDefault();
-   localStorage.setItem('player', input.value);
+   localStorage.setItem('player', playerInput.value);
+   localStorage.setItem('theme', selectedInput['dataset'].themeName);
    window.location = 'pages/game.html';
 };
 
-input.addEventListener('focus', () => (input.placeholder = ''));
-input.addEventListener('focusout', () => (input.placeholder = placeholder));
+// lidando com placeholder
+playerInput.addEventListener('focus', () => (playerInput.placeholder = ''));
+playerInput.addEventListener(
+   'focusout',
+   () => (playerInput.placeholder = placeholder)
+);
 
-input.addEventListener('input', validateInput);
+playerInput.addEventListener('input', validateInput);
 
 form.addEventListener('submit', handleSubmit);

@@ -20,8 +20,10 @@
       />
       <link rel="stylesheet" href="./css/global.css" />
       <link rel="stylesheet" href="./css/login.css" />
+      <link rel="stylesheet" href="./css/select-custom.css" />
 
       <script defer src="./js/login.js"></script>
+      <script defer src="./js/select-custom.js"></script>
 
       <title>Jogo da Memória | Entrar</title>
    </head>
@@ -54,6 +56,20 @@
                   required
                   aria-required="true"
                />
+               <div class="theme-container">
+                  <div id="selected"></div>
+                  <ul class="theme-list">
+                     <!-- o id deve ser o mesmo nome da pasta criada em /images -->
+                     <li class="theme-name">
+                        <input type="radio" name="theme" id="programacao" />
+                        <label for="programacao">Programação</label>
+                     </li>
+                     <li class="theme-name">
+                        <input type="radio" name="theme" id="animais" />
+                        <label for="animais">Animais</label>
+                     </li>
+                  </ul>
+               </div>
                <button
                   type="submit"
                   disabled
