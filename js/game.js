@@ -1,5 +1,3 @@
-const player = localStorage.getItem('player');
-const cardTheme = localStorage.getItem('theme');
 const attemptCounterText = document.querySelector('.attempt-counter p');
 const timer = document.querySelector('.timer');
 const gameRestart = document.querySelector('.game-restart');
@@ -7,6 +5,9 @@ const gameFeedback = document.querySelector('.game-feedback');
 const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
 const gridCards = document.querySelector('.grid-cards');
+
+let player = localStorage.getItem('player');
+let cardTheme = localStorage.getItem('theme');
 
 let firstCard = '';
 let secondCard = '';
@@ -17,21 +18,15 @@ let limitTime = '59:59'; // 59:59
 // contador de tentativas
 let attemptCounter = 0;
 
+const totalCards = 10;
+
 /**
  * NOMES DOS ARQUIVOS DE IMAGEM
  */
-const cardImages = [
-   'card-01',
-   'card-02',
-   'card-03',
-   'card-04',
-   'card-05',
-   'card-06',
-   'card-07',
-   'card-08',
-   'card-09',
-   'card-10',
-];
+const cardImages = [];
+for (let i = 1; i <= totalCards; i++) {
+   cardImages.push(`card-${i}`);
+}
 
 const createElement = (tag, className) => {
    const element = document.createElement(tag);
@@ -103,7 +98,7 @@ const checkEndGame = () => {
 
          finalMessage(
             'ph-confetti',
-            `Venceu! Parabéns, ${player ? player + '!' : 'Anônimo!'}`,
+            `Venceu! Parabéns, ${player}!`,
             'var(--color-primary)'
          );
 
@@ -257,7 +252,7 @@ const formatTimer = (timerInMs) => {
 };
 
 /**
- * LIMITA O TEMPO MÁXIMO DE JOGO PARA 60 MINUTOS
+ * AÇÕES PARA O TEMPO MÁXIMO DE JOGO
  */
 const checkTimeLimit = () => {
    // insere efeitos visuais para alertar a proximidade do tempo limite
@@ -288,7 +283,7 @@ const checkTimeLimit = () => {
 
          finalMessage(
             'ph-smiley-sad',
-            'Tempo esgotado... <a href="../pages/game.html" title="Reiniciar o jogo">Tente novamente!</a>',
+            'Tempo esgotado... <a href="javascript:window.location.reload()" title="Reiniciar o jogo">Tente novamente!</a>',
             'var(--color-hover)'
          );
       }, 200);
@@ -314,15 +309,19 @@ const timerOn = () => {
 };
 
 /**
- * INSERE O NOME DO JOGADOR,
+ * MOSTRA MENSAGEM INICIAL AO JOGADOR,
+ * DEFINE TEMA PADRÃO,
  * CARREGA O TIMER,
  * CARREGA TODAS AS CARTAS DO JOGO
  */
 window.onload = () => {
-   if (player) {
-      gameFeedbackText.innerHTML = `Boa sorte, ${player}!`;
-   } else {
-      gameFeedbackText.innerHTML = 'Boa sorte, Anônimo!';
+   if (!player) {
+      player = 'Anônimo';
+   }
+   gameFeedbackText.innerHTML = `Boa sorte, ${player}!`;
+
+   if (!cardTheme) {
+      cardTheme = 'programacao';
    }
 
    timerOn();
