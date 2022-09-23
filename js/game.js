@@ -200,22 +200,22 @@ const handleRevealCard = ({ target }) => {
  * IDENTIFICA AS CARTAS
  */
 const createCard = (cardImage) => {
-   const cardElement = createElement('li', 'card handle-card-hover');
+   const cardItem = createElement('li', 'card handle-card-hover');
    const frontFace = createElement('div', 'face front-face');
    const backFace = createElement('div', 'face back-face');
 
-   cardElement.appendChild(frontFace);
-   cardElement.appendChild(backFace);
+   cardItem.appendChild(frontFace);
+   cardItem.appendChild(backFace);
 
    // cria a imagem frontal da carta
    frontFace.style.backgroundImage = `url(../images/${cardTheme}/${cardImage}.png)`;
 
    // cria identificação para cada carta
-   cardElement.setAttribute('data-card-image', cardImage);
+   cardItem.setAttribute('data-card-image', cardImage);
 
-   cardElement.addEventListener('click', handleRevealCard);
+   cardItem.addEventListener('click', handleRevealCard);
 
-   return cardElement;
+   return cardItem;
 };
 
 /**
@@ -320,6 +320,7 @@ window.onload = () => {
    }
    gameFeedbackText.innerHTML = `Boa sorte, ${player}!`;
 
+   // quando o localStorage estiver vazio
    if (!cardTheme) {
       cardTheme = 'programacao';
    }
