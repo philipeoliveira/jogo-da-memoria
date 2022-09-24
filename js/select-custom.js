@@ -11,6 +11,7 @@ selected.innerHTML = inicialText;
 const themeProps = [
    { id: 'profissoes', name: 'Profissões' },
    { id: 'animais', name: 'Animais' },
+   { id: 'baralho', name: 'Baralho' },
    { id: 'programacao', name: 'Programação' },
 ];
 
