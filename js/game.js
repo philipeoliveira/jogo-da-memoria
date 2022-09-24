@@ -12,8 +12,8 @@ let cardTheme = localStorage.getItem('theme');
 let firstCard = '';
 let secondCard = '';
 
-let alertTime = '59:00'; // 59:00
-let limitTime = '59:59'; // 59:59
+let alertTime = '29:00'; // 29:00
+let limitTime = '30:00'; // 30:00
 
 // contador de tentativas
 let attemptCounter = 0;
