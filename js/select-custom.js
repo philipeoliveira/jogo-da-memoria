@@ -13,6 +13,7 @@ const themeProps = [
    { id: 'animais', name: 'Animais' },
    { id: 'baralho', name: 'Baralho' },
    { id: 'programacao', name: 'Programação' },
+   { id: 'alfabeto', name: 'Alfabeto' },
 ];
 
 // seleciona o primeiro item da lista para o tema padrão,
