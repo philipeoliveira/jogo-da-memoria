@@ -61,11 +61,11 @@ const handleCardHover = (cards) => {
 /**
  * MENSAGEM FINAL
  */
-const finalMessage = (icon, message, color) => {
+const finalMessage = (icon, message, borderColor, textColor) => {
    setTimeout(() => {
       gameFeedback.style.animation = 'fade-in 1.5s ease';
-      gameFeedback.style.border = `2px solid ${color}`;
-      gameFeedback.style.color = `${color}`;
+      gameFeedback.style.border = `2px solid ${borderColor}`;
+      gameFeedback.style.color = `${textColor}`;
       gameFeedbackIcon.setAttribute('class', `${icon}`);
       gameFeedbackText.innerHTML = `${message}`;
    }, 400);
@@ -99,6 +99,7 @@ const checkEndGame = () => {
          finalMessage(
             'ph-confetti',
             `Venceu! Parabéns, ${player}!`,
+            'var(--color-hover)',
             'var(--color-primary)'
          );
 
@@ -284,6 +285,7 @@ const checkTimeLimit = () => {
          finalMessage(
             'ph-smiley-sad',
             'Tempo esgotado... <a href="javascript:window.location.reload()" title="Reiniciar o jogo">Tente novamente!</a>',
+            'var(--color-hover)',
             'var(--color-hover)'
          );
       }, 200);
