@@ -9,10 +9,10 @@ selected.innerHTML = inicialText;
  * NOMES DOS DIRETÓRIOS DOS TEMAS USADOS COMO ID
  */
 const themeProps = [
-   { id: 'profissoes', name: 'Profissões' },
-   { id: 'animais', name: 'Animais' },
-   { id: 'baralho', name: 'Baralho' },
    { id: 'programacao', name: 'Programação' },
+   { id: 'animais', name: 'Animais' },
+   { id: 'profissoes', name: 'Profissões' },
+   { id: 'baralho', name: 'Baralho' },
    { id: 'alfabeto', name: 'Alfabeto' },
 ];
 
@@ -20,6 +20,27 @@ const themeProps = [
 // evitando enviar undefined para o localStorage
 let defaultTheme = themeProps[0].id;
 selected.setAttribute('data-theme-name', defaultTheme);
+
+/**
+ * COMPARA CAMPOS DE TEXTO DE OBJETOS,
+ * RETORNANDO EM ORDEM ALFABÉTICA
+ */
+const alphabeticalOrder = (objects) => {
+   objects.sort((objectA, objectB) => {
+      if (objectA.id > objectB.id) {
+         // ordena objectB para um índice anterior que objectA
+         return 1;
+      }
+      if (objectA.id < objectB.id) {
+         // ordena objectA para um índice anterior a objectB
+         return -1;
+      }
+      // deixa objectA e objectB inalterados um em relação ao outro
+      return 0;
+   });
+
+   return objects;
+};
 
 /**
  * LIDA COM O INPUT CLICADO
@@ -59,7 +80,7 @@ const createTheme = (themeProps) => {
 };
 
 // adiciona todos os itens na lista
-themeProps.forEach((props) => {
+alphabeticalOrder(themeProps).forEach((props) => {
    const theme = createTheme(props);
    themeList.appendChild(theme);
 });
