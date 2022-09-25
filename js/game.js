@@ -263,7 +263,7 @@ const checkTimeLimit = () => {
    }
 
    // tempo limite
-   if (timer.innerHTML >= limitTime) {
+   if (timer.innerHTML === limitTime) {
       const cardsHover = document.querySelectorAll('.handle-card-hover');
 
       // parando o timer
