@@ -2,7 +2,7 @@ var confettiElement = document.getElementById('confetti-canvas');
 var confettiSettings = {
    target: confettiElement,
    max: '200',
-   size: '0.7',
+   size: '0.8',
    animate: true,
    props: [
       'circle',
