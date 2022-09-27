@@ -29,7 +29,9 @@ const handleSubmit = (event) => {
    window.location = 'pages/game.html';
 };
 
-// lidando com placeholder
+/**
+ * LIDANDO COM PLACEHOLDER
+ */
 playerInput.addEventListener('focus', () => (playerInput.placeholder = ''));
 playerInput.addEventListener(
    'focusout',
@@ -39,3 +41,17 @@ playerInput.addEventListener(
 playerInput.addEventListener('input', validateInput);
 
 form.addEventListener('submit', handleSubmit);
+
+/**
+ * SE JÁ EXISTIR, CARREGA O ÚLTIMO NOME DO JOGADOR
+ */
+window.onload = () => {
+   let player = localStorage.getItem('player');
+
+   if (player) {
+      playerInput.value = player;
+
+      btn.removeAttribute('disabled');
+      btn.classList.add('active');
+   }
+};
