@@ -23,7 +23,7 @@
    transform: rotate(90deg);
    right: 25px;
    top: 15px;
-   transition: top 0.3s;
+   transition: top 0.2s;
 }
 #selected.up-arrow::after {
    transform: rotate(-90deg);
