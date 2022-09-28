@@ -25,7 +25,8 @@ const validateInput = ({ target }) => {
 const handleSubmit = (event) => {
    event.preventDefault();
    localStorage.setItem('player', playerInput.value);
-   localStorage.setItem('theme', selectedInput['dataset'].themeName);
+   localStorage.setItem('themeId', selectedInput['dataset'].themeId);
+   localStorage.setItem('themeName', selectedInput['dataset'].themeName);
    window.location = 'pages/game.html';
 };
 
