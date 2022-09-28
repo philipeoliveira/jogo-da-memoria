@@ -2,7 +2,7 @@ const themeContainer = document.querySelector('.theme-container');
 const selected = document.querySelector('#selected');
 const themeList = document.querySelector('.theme-list');
 
-let inicialText = 'Escolha um tema';
+let inicialText = 'Tema das cartas';
 selected.innerHTML = inicialText;
 
 /**
@@ -19,7 +19,9 @@ const themeProps = [
 // seleciona o primeiro item da lista para o tema padrão,
 // evitando enviar undefined para o localStorage
 let defaultTheme = themeProps[0].id;
-selected.setAttribute('data-theme-name', defaultTheme);
+let defaultName = themeProps[0].name;
+selected.setAttribute('data-theme-id', defaultTheme);
+selected.setAttribute('data-theme-name', defaultName);
 
 /**
  * COMPARA CAMPOS DE TEXTO DE OBJETOS,
@@ -46,8 +48,9 @@ const alphabeticalOrder = (objects) => {
  * LIDA COM O INPUT CLICADO
  */
 const handleSelect = (event) => {
-   // modifica a identificação dataset padrão do selected
-   selected.setAttribute('data-theme-name', event.target.htmlFor);
+   // modifica a identificação dataset padrão
+   selected.setAttribute('data-theme-id', event.target.htmlFor);
+   selected.setAttribute('data-theme-name', event.target.innerHTML);
 
    selected.innerHTML = event.target.innerHTML;
    themeList.classList.remove('open');
