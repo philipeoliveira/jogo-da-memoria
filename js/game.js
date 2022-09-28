@@ -1,13 +1,16 @@
-const attemptCounterText = document.querySelector('.attempt-counter p');
-const timer = document.querySelector('.timer');
-const gameRestart = document.querySelector('.game-restart');
+const playerEl = document.querySelector('#player');
+const themeEl = document.querySelector('#theme');
+const attemptCounterText = document.querySelector('#attempt-counter');
+const timer = document.querySelector('#timer');
+const restart = document.querySelector('#restart');
 const gameFeedback = document.querySelector('.game-feedback');
 const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
 const gridCards = document.querySelector('.grid-cards');
 
 let player = localStorage.getItem('player');
-let cardTheme = localStorage.getItem('theme');
+let cardThemeId = localStorage.getItem('themeId');
+let cardThemeName = localStorage.getItem('themeName');
 
 let firstCard = '';
 let secondCard = '';
@@ -97,8 +100,8 @@ const checkEndGame = () => {
          window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
 
          finalMessage(
-            'ph-confetti',
-            `Venceu! Parabéns, ${player}!`,
+            'ph-trophy',
+            `Você venceu! Parabéns, ${player}!`,
             'var(--color-hover)',
             'var(--color-primary)'
          );
@@ -107,7 +110,7 @@ const checkEndGame = () => {
          confetti.classList.add('active');
 
          // insere efeito shake no botão que reinicia o jogo
-         gameRestart.classList.add('shake');
+         restart.classList.add('shake');
       }, 200);
 
       // zera a contagem de tentativas de match
@@ -209,7 +212,7 @@ const createCard = (cardImage) => {
    cardItem.appendChild(backFace);
 
    // cria a imagem frontal da carta
-   frontFace.style.backgroundImage = `url(../images/${cardTheme}/${cardImage}.png)`;
+   frontFace.style.backgroundImage = `url(../images/${cardThemeId}/${cardImage}.png)`;
 
    // cria identificação para cada carta
    cardItem.setAttribute('data-card-image', cardImage);
@@ -320,12 +323,16 @@ window.onload = () => {
    if (!player) {
       player = 'Anônimo';
    }
-   gameFeedbackText.innerHTML = `Boa sorte, ${player}!`;
-
    // quando o localStorage estiver vazio
-   if (!cardTheme) {
-      cardTheme = 'programacao';
+   if (!cardThemeId) {
+      cardThemeId = 'programacao';
    }
+   if (!cardThemeName) {
+      cardThemeName = 'Programação';
+   }
+
+   playerEl.innerHTML = player;
+   themeEl.innerHTML = cardThemeName;
 
    timerOn();
 

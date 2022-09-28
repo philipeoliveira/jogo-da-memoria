@@ -48,42 +48,87 @@
                <h1>Jogo da Memória</h1>
                <div class="game-actions">
                   <div class="game-info">
-                     <span class="icon-text attempt-counter">
-                        <i class="ph-crosshair"></i>
-                        <p>0<span> tentativa</span></p>
+                     <span class="icon-text" title="Nome do jogador">
+                        <i class="ph-user"></i>
+                        <p id="player"></p>
                      </span>
-                     <span class="icon-text">
-                        <i class="ph-timer"></i>
-                        <p class="timer"></p>
+                     <span class="icon-text" title="Tema das cartas">
+                        <i class="ph-check"></i>
+                        <p id="theme"></p>
                      </span>
                   </div>
-                  <button
-                     onClick="window.location.reload()"
-                     title="Reiniciar o jogo"
-                     class="icon-text game-restart active"
+                  <a
+                     href="../index.html"
+                     title="Trocar tema"
+                     class="icon-text btn game-restart active"
                   >
-                     <i class="ph-arrow-clockwise"></i>
-                  </button>
+                     <i class="ph-arrows-clockwise"></i>
+                  </a>
                </div>
             </div>
          </header>
          <main>
             <div class="game-feedback">
                <span class="icon-text">
-                  <i class="ph-smiley"></i>
-                  <p></p>
+                  <i class="ph-smiley-wink"></i>
+                  <p>Descubra as cartas iguais. Boa sorte!</p>
                </span>
+            </div>
+            <div class="game-actions">
+               <div class="game-info">
+                  <span class="icon-text" title="Tentativas efetuadas">
+                     <i class="ph-crosshair"></i>
+                     <p id="attempt-counter">0<span> tentativa</span></p>
+                  </span>
+                  <span class="icon-text" title="Tempo corrente">
+                     <i class="ph-timer"></i>
+                     <p id="timer"></p>
+                  </span>
+               </div>
+               <button
+                  onClick="window.location.reload()"
+                  title="Reiniciar o jogo"
+                  class="icon-text game-restart active"
+                  id="restart"
+               >
+                  <i class="ph-arrow-clockwise"></i>
+               </button>
             </div>
             <ul class="grid-cards"></ul>
          </main>
          <footer class="secondary-text">
-            Desenvolvido por
-            <a
-               href="https://github.com/philipeoliveira"
-               title="Abrir em nova janela o GitHub do autor Philipe Oliveira"
-               target="_blank"
-               >Philipe Oliveira</a
-            >
+            <ul>
+               <li>
+                  <a
+                     href="./o-jogo.html"
+                     title="Informar as regras e as instruções"
+                     >O jogo</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="./creditos.html"
+                     title="Comunicar os autores das imagens utilizadas"
+                     >Créditos</a
+                  >
+               </li>
+               <li>
+                  <a
+                     href="./o-jogo.html"
+                     title="Deletar os dados do login e sair do jogo"
+                     >Sair</a
+                  >
+               </li>
+            </ul>
+            <p>
+               Desenvolvido por
+               <a
+                  href="https://github.com/philipeoliveira"
+                  title="Abrir em nova janela o GitHub do autor Philipe Oliveira"
+                  target="_blank"
+                  >Philipe Oliveira</a
+               >
+            </p>
          </footer>
       </div>
       <canvas id="confetti-canvas"></canvas>

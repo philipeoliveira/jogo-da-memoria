@@ -29,6 +29,9 @@ body {
    background-color: var(--color-background);
    color: var(--color-text);
 }
+header figure img {
+   max-width: 130px;
+}
 h1 {
    font-size: 1.4em;
    color: var(--color-primary);
@@ -59,7 +62,8 @@ input:focus,
 input:active {
    border-color: var(--color-hover);
 }
-button {
+button,
+.btn {
    cursor: pointer;
    border-radius: 20px;
    background-color: var(--color-secondary);
@@ -67,14 +71,20 @@ button {
    transition: background-color 0.3s;
 }
 button:hover,
-button:focus {
+button:focus,
+.btn:hover,
+.btn:focus {
+   color: var(--color-background);
    background-color: var(--color-hover);
 }
-button:disabled {
+button:disabled,
+.btn:disabled {
    background-color: var(--color-disabled);
    cursor: initial;
 }
-button.active:active {
+button.active:active,
+.btn.active:active {
+   color: var(--color-background);
    opacity: 0.8;
 }
 
@@ -117,16 +127,30 @@ a:focus img {
    gap: 20px;
 }
 
-.secondary-text {
+.secondary-text ul {
+   display: flex;
+   justify-content: center;
+   margin: 10px 0;
+}
+.secondary-text p,
+.secondary-text ul li {
+   display: inline;
+   color: var(--color-disabled);
    font-family: sans-serif;
    font-size: 0.75em;
-   color: var(--color-disabled);
+   padding: 0 10px;
+}
+.secondary-text ul li:not(:first-child) {
+   border-left: 1px solid var(--color-disabled);
 }
 .secondary-text a {
+   color: var(--color-disabled);
    border-bottom: 1px dotted;
 }
+.secondary-text a:focus,
+.secondary-text a:hover,
 .secondary-text a:active {
-   border-bottom: 1px solid;
+   color: var(--color-hover);
 }
 .icon-text {
    display: flex;
@@ -138,30 +162,6 @@ a:focus img {
 }
 
 @media (max-width: 479px) {
-   h1 {
-      font-size: 1em;
-      word-spacing: -5px;
-   }
-   input {
-      border-radius: 20px;
-      padding: 10px 18px;
-      word-spacing: -7px;
-   }
-   button {
-      border-radius: 18px;
-   }
-   .secondary-text {
-      font-size: 0.6em;
-   }
-   .icon-text {
-      gap: 0.6em;
-   }
 }
 @media (min-width: 480px) and (max-width: 767px) {
-   .secondary-text {
-      font-size: 0.7em;
-   }
-   .icon-text {
-      gap: 0.7em;
-   }
 }
