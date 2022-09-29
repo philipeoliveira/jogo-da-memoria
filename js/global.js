@@ -11,3 +11,12 @@ const clearLocalStorage = () => {
 };
 
 logoutEl.addEventListener('click', clearLocalStorage);
+
+/**
+ * RECARREGA A PÁGINA
+ */
+const reloadPage = (btn) => {
+   btn.addEventListener('click', () => {
+      window.location.reload();
+   });
+};

@@ -2,7 +2,7 @@ const playerEl = document.querySelector('#player');
 const themeEl = document.querySelector('#theme');
 const attemptCounterText = document.querySelector('#attempt-counter');
 const timer = document.querySelector('#timer');
-const restart = document.querySelector('#restart');
+const reloadBtn = document.querySelector('#btn-reload');
 const gameFeedback = document.querySelector('.game-feedback');
 const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
@@ -110,7 +110,7 @@ const checkEndGame = () => {
          confetti.classList.add('active');
 
          // insere efeito shake no botão que reinicia o jogo
-         restart.classList.add('shake');
+         reloadBtn.classList.add('shake');
       }, 200);
 
       // zera a contagem de tentativas de match
@@ -337,4 +337,6 @@ window.onload = () => {
    timerOn();
 
    loadGame();
+
+   reloadPage(reloadBtn);
 };
