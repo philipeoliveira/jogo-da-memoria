@@ -287,7 +287,7 @@ const checkTimeLimit = () => {
 
          finalMessage(
             'ph-smiley-sad',
-            'Tempo esgotado... <a href="javascript:window.location.reload()" title="Reiniciar o jogo">Tente novamente!</a>',
+            'Tempo esgotado... <a href="./game.html" title="Reiniciar o jogo">Tente novamente!</a>',
             'var(--color-hover)',
             'var(--color-hover)'
          );
