@@ -12,6 +12,22 @@
    --color-opacity: rgba(255, 255, 255, 0.4);
 }
 
+/* SCROLLBAR */
+body::-webkit-scrollbar,
+body::-webkit-scrollbar-button {
+   width: 20px;
+   height: 10px;
+}
+body::-webkit-scrollbar-thumb {
+   background-color: var(--color-primary);
+   border: 5px solid var(--color-background);
+   border-radius: 20px;
+}
+body::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:active {
+   background-color: var(--color-hover);
+}
+
 /* RESET */
 * {
    margin: 0;
