@@ -20,13 +20,12 @@
       />
       <link rel="stylesheet" href="../css/global.css" />
       <link rel="stylesheet" href="../css/game.css" />
-      <link rel="stylesheet" href="../css/confetti.css" />
 
       <script defer src="https://unpkg.com/phosphor-icons"></script>
       <script defer src="../js/global.js"></script>
       <script defer src="../js/game.js"></script>
 
-      <title>Jogo da Memória</title>
+      <title>Jogo da Memória | Como Jogar</title>
    </head>
    <body>
       <div id="particles-js"></div>
@@ -51,7 +50,7 @@
                <h1>Jogo da Memória</h1>
                <div class="game-actions">
                   <div class="game-info">
-                     <span class="icon-text" title="Nome do(a) jogador(a)">
+                     <span class="icon-text" title="Nome do jogador">
                         <i class="ph-user"></i>
                         <p id="player"></p>
                      </span>
@@ -73,30 +72,40 @@
          <main>
             <div class="game-feedback">
                <span class="icon-text">
-                  <i class="ph-smiley-wink"></i>
-                  <p>Descubra as cartas iguais. Boa sorte!</p>
+                  <a href="./game.html" title="Voltar e Iniciar o jogo">
+                     <i class="ph-arrow-left"></i>
+                     Voltar para Jogar
+                  </a>
                </span>
             </div>
-            <div class="game-actions">
-               <div class="game-info">
-                  <span class="icon-text" title="Tentativas efetuadas">
-                     <i class="ph-crosshair"></i>
-                     <p id="attempt-counter">0<span> tentativa</span></p>
-                  </span>
-                  <span class="icon-text" title="Tempo corrente">
-                     <i class="ph-timer"></i>
-                     <p id="timer"></p>
-                  </span>
-               </div>
-               <button
-                  title="Reiniciar o jogo"
-                  class="icon-text game-restart active"
-                  id="btn-reload"
-               >
-                  <i class="ph-arrow-clockwise"></i>
-               </button>
+            <div id="main-content">
+               <h2 class="icon-title">
+                  <i class="ph-game-controller"></i>Como jogar
+               </h2>
+               <p>
+                  O objetivo do tradicional Jogo da Memória é
+                  <span>descobrir duplas de cartas iguais</span>. Neste site, é
+                  possível escolher um tema para as cartas.
+               </p>
+               <p>
+                  Ao iniciar o jogo, escolha e vire duas cartas para cada
+                  tentativa. Se forem iguais, elas se manterão viradas; se forem
+                  diferentes, serão automaticamente escondidas.
+               </p>
+               <p>
+                  O tempo máximo para encontrar todas as cartas iguais é de
+                  <span> 30 minutos</span>. Depois deste limite de tempo, o jogo
+                  é interrompido mas poderá ser reiniciado.
+               </p>
+               <p>
+                  Para tornar o jogo ainda mais desafiante, tente combinar todas
+                  as cartas no menor tempo e com a menor quantidade de
+                  tentativas que conseguir. <span>Boa sorte!</span>
+               </p>
             </div>
-            <ul class="grid-cards"></ul>
+            <a href="./game.html" title="Iniciar o jogo" class="btn-txt">
+               Jogar
+            </a>
          </main>
          <footer class="secondary-text">
             <ul>
@@ -134,11 +143,6 @@
             </p>
          </footer>
       </div>
-      <canvas id="confetti-canvas"></canvas>
-
-      <!-- Confetti -->
-      <script src="../js/confetti.min.js"></script>
-      <script src="../js/confetti-custom.js"></script>
 
       <!-- Particles -->
       <script src="../js/particles.min.js"></script>

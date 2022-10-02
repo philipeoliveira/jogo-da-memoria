@@ -12,6 +12,18 @@
    --color-opacity: rgba(255, 255, 255, 0.4);
 }
 
+/* RESET */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   font-family: 'Press Start 2P', cursive, sans-serif;
+   font-weight: normal;
+   list-style: none;
+   border: none;
+   outline: none;
+}
+
 /* SCROLLBAR */
 body::-webkit-scrollbar,
 body::-webkit-scrollbar-button {
@@ -28,18 +40,6 @@ body::-webkit-scrollbar-thumb:active {
    background-color: var(--color-hover);
 }
 
-/* RESET */
-* {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   font-family: 'Press Start 2P', cursive, sans-serif;
-   font-weight: normal;
-   list-style: none;
-   border: none;
-   outline: none;
-}
-
 /* GLOBAL */
 body {
    background-color: var(--color-background);
@@ -52,8 +52,25 @@ h1 {
    font-size: 1.4em;
    color: var(--color-primary);
 }
+h2 {
+   font-size: 1.1em;
+   word-spacing: -7px;
+   color: var(--color-primary);
+   margin-bottom: 20px;
+}
 main {
    width: 100%;
+}
+dl {
+   margin-bottom: 15px;
+}
+dt {
+   font-size: 0.85em;
+   color: var(--color-primary);
+   margin: 30px 0 10px;
+}
+dd {
+   margin-bottom: 10px;
 }
 
 /* FORM */
@@ -79,29 +96,41 @@ input:active {
    border-color: var(--color-hover);
 }
 button,
-.btn {
+.btn-icon,
+a.btn-txt {
    cursor: pointer;
    border-radius: 20px;
    background-color: var(--color-secondary);
    color: var(--color-background);
    transition: background-color 0.3s;
 }
+a.btn-txt:visited {
+   background-color: var(--color-secondary);
+   color: var(--color-background);
+}
 button:hover,
 button:focus,
-.btn:hover,
-.btn:focus {
+.btn-icon:hover,
+.btn-icon:focus,
+a.btn-txt:hover,
+a.btn-txt:focus,
+a.btn-txt:active {
    color: var(--color-background);
    background-color: var(--color-hover);
 }
-button:disabled,
-.btn:disabled {
+button:disabled {
    background-color: var(--color-disabled);
    cursor: initial;
 }
-button.active:active,
-.btn.active:active {
+button.active:active {
    color: var(--color-background);
    opacity: 0.8;
+}
+a.btn-txt {
+   font-family: 'Press Start 2P', cursive, sans-serif;
+   font-size: 0.8em;
+   text-align: center;
+   padding: 12px 22px;
 }
 
 /* LINK */
@@ -123,6 +152,10 @@ a:active {
 a:active,
 a:focus img {
    opacity: 0.8;
+}
+a[target='_blank'] i {
+   font-size: 1.1em;
+   padding-left: 3px;
 }
 
 /* ADDED GLOBALS */
@@ -174,7 +207,13 @@ a:focus img {
    align-items: baseline;
    gap: 0.8em;
 }
-.icon-text i {
+.icon-title {
+   display: flex;
+   align-items: baseline;
+   gap: 1em;
+}
+.icon-text i,
+.icon-title i {
    font-size: 1.2em;
 }
 

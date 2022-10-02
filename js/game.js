@@ -334,9 +334,9 @@ window.onload = () => {
    playerEl.innerHTML = player;
    themeEl.innerHTML = cardThemeName;
 
-   timerOn();
-
-   loadGame();
-
-   reloadPage(reloadBtn);
+   if (window.location.pathname === '/pages/game.html') {
+      timerOn();
+      loadGame();
+      reloadPage(reloadBtn);
+   }
 };

@@ -1,4 +1,12 @@
 const logoutEl = document.querySelector('#logout');
+const targetBlank = document.querySelectorAll("a[target='_blank']");
+
+/**
+ * ADICIONA ÍCONE AOS LINKS COM TARGET BLANK
+ */
+for (let i = 0; i < targetBlank.length; i++) {
+   targetBlank[i].innerHTML += '<i class="ph-arrow-square-out"></i>';
+}
 
 /**
  * REMOVE TODOS OS DADOS GRAVADOS NO LOCALSTORAGE
@@ -10,7 +18,7 @@ const clearLocalStorage = () => {
    window.location = '../index.html';
 };
 
-logoutEl.addEventListener('click', clearLocalStorage);
+if (logoutEl) logoutEl.addEventListener('click', clearLocalStorage);
 
 /**
  * RECARREGA A PÁGINA

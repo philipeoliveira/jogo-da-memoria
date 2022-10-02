@@ -72,6 +72,30 @@
 .game-feedback a:active {
    opacity: 0.8;
 }
+#main-content {
+   width: 100%;
+   background-color: var(--color-disabled);
+   padding: 22px 30px;
+   border-radius: 10px;
+   box-shadow: 1px 1px 1px var(--color-opacity);
+}
+#main-content p {
+   font-size: 0.8em;
+   line-height: 2.2em;
+}
+#main-content p span {
+   color: var(--color-primary);
+}
+#main-content a {
+   color: var(--color-secondary);
+   font-size: 0.9em;
+   border-bottom: 1px dotted;
+}
+#main-content a:focus,
+#main-content a:hover,
+#main-content a:active {
+   color: var(--color-hover);
+}
 .grid-cards {
    width: 100%;
    background-color: var(--color-disabled);
@@ -105,10 +129,6 @@
    transform: rotateY(180deg);
 }
 .back-face {
-   /**
-   * FONTE DO ÍCONE NA IMAGEM card-default.png
-   * www.flaticon.com/br/icone-gratis/programacao_2721284
-   */
    background-image: url('../images/card-default.png');
    backface-visibility: hidden;
 }

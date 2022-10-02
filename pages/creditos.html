@@ -20,13 +20,12 @@
       />
       <link rel="stylesheet" href="../css/global.css" />
       <link rel="stylesheet" href="../css/game.css" />
-      <link rel="stylesheet" href="../css/confetti.css" />
 
       <script defer src="https://unpkg.com/phosphor-icons"></script>
       <script defer src="../js/global.js"></script>
       <script defer src="../js/game.js"></script>
 
-      <title>Jogo da Memória</title>
+      <title>Jogo da Memória | Créditos</title>
    </head>
    <body>
       <div id="particles-js"></div>
@@ -51,7 +50,7 @@
                <h1>Jogo da Memória</h1>
                <div class="game-actions">
                   <div class="game-info">
-                     <span class="icon-text" title="Nome do(a) jogador(a)">
+                     <span class="icon-text" title="Nome do jogador">
                         <i class="ph-user"></i>
                         <p id="player"></p>
                      </span>
@@ -73,30 +72,79 @@
          <main>
             <div class="game-feedback">
                <span class="icon-text">
-                  <i class="ph-smiley-wink"></i>
-                  <p>Descubra as cartas iguais. Boa sorte!</p>
+                  <a href="./game.html" title="Voltar e Iniciar o jogo">
+                     <i class="ph-arrow-left"></i>
+                     Voltar para Jogar
+                  </a>
                </span>
             </div>
-            <div class="game-actions">
-               <div class="game-info">
-                  <span class="icon-text" title="Tentativas efetuadas">
-                     <i class="ph-crosshair"></i>
-                     <p id="attempt-counter">0<span> tentativa</span></p>
-                  </span>
-                  <span class="icon-text" title="Tempo corrente">
-                     <i class="ph-timer"></i>
-                     <p id="timer"></p>
-                  </span>
-               </div>
-               <button
-                  title="Reiniciar o jogo"
-                  class="icon-text game-restart active"
-                  id="btn-reload"
-               >
-                  <i class="ph-arrow-clockwise"></i>
-               </button>
+            <div id="main-content">
+               <h2 class="icon-title"><i class="ph-image"></i>Créditos</h2>
+               <p>
+                  Seguem abaixo os links das fontes com os devidos
+                  <span>créditos para os autores das imagens </span>utilizadas
+                  neste site.
+               </p>
+               <dl>
+                  <dt>Logo do site</dt>
+                  <dd class="secondary-text">
+                     <a
+                        href="https://www.flaticon.com/br/icone-gratis/tarefas-diarias_3588723"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Ícone com desenho de tarefas diárias (modificado)</a
+                     >
+                  </dd>
+                  <dt>Face de trás padrão das cartas</dt>
+                  <dd class="secondary-text">
+                     <a
+                        href="https://pixabay.com/pt/illustrations/geom%c3%a9trico-tri%c3%a2ngulo-papel-de-parede-3037169/"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Imagem geométrica com triângulos</a
+                     >
+                  </dd>
+                  <dd class="secondary-text">
+                     <a
+                        href="https://www.flaticon.com/br/icone-gratis/programacao_2721284"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Ícone programação no notebook</a
+                     >
+                  </dd>
+                  <dt>Cartas do tema Alfabeto</dt>
+                  <dd class="secondary-text">
+                     <a
+                        href="https://pixabay.com/pt/photos/preto-conselho-tra%c3%a7os-de-giz-escola-1072366/"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Imagem de quadro escolar com traços de giz
+                        (modificada)</a
+                     >
+                  </dd>
+                  <dt>Cartas do tema Animais</dt>
+                  <dd>
+                     <a
+                        href="https://pixabay.com/pt/vectors/animais-bonitinho-cole%c3%a7%c3%a3o-cachorro-6392056/"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Imagem com desenhos de animais</a
+                     >
+                  </dd>
+                  <dt>Cartas do tema Profissões</dt>
+                  <dd>
+                     <a
+                        href="https://www.flaticon.com/br/packs/professions-30"
+                        title="Abrir em nova aba do navegador"
+                        target="_blank"
+                        >Ícones com desenhos sobre profissões</a
+                     >
+                  </dd>
+               </dl>
             </div>
-            <ul class="grid-cards"></ul>
+            <a href="./game.html" title="Iniciar o jogo" class="btn-txt">
+               Jogar
+            </a>
          </main>
          <footer class="secondary-text">
             <ul>
@@ -134,11 +182,6 @@
             </p>
          </footer>
       </div>
-      <canvas id="confetti-canvas"></canvas>
-
-      <!-- Confetti -->
-      <script src="../js/confetti.min.js"></script>
-      <script src="../js/confetti-custom.js"></script>
 
       <!-- Particles -->
       <script src="../js/particles.min.js"></script>
