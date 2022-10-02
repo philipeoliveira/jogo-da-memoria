@@ -2,7 +2,7 @@ const themeContainer = document.querySelector('.theme-container');
 const selected = document.querySelector('#selected');
 const themeList = document.querySelector('.theme-list');
 
-let inicialText = 'Tema das cartas';
+let inicialText = 'Escolha um tema';
 selected.innerHTML = inicialText;
 
 /**
