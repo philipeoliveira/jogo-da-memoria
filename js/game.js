@@ -183,11 +183,12 @@ const handleRevealCard = ({ target }) => {
       return;
    }
 
-   // verificar qual é a carta, REVELA e armazena
-   if (firstCard === '') {
+   // verifica qual é a carta, REVELA e armazena
+   // target.classList[0] !== 'card' corrige bug do clique arrastado sobre o li
+   if (firstCard === '' && target.classList[0] !== 'card') {
       target.parentNode.classList.add('reveal-card');
       firstCard = target.parentNode;
-   } else if (secondCard === '') {
+   } else if (secondCard === '' && target.classList[0] !== 'card') {
       target.parentNode.classList.add('reveal-card');
       secondCard = target.parentNode;
 
@@ -196,7 +197,9 @@ const handleRevealCard = ({ target }) => {
       checkCards();
    }
 
-   handleCardHover([target.parentNode]);
+   if (target.classList[0] !== 'card') {
+      handleCardHover([target.parentNode]);
+   }
 };
 
 /**
