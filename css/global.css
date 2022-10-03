@@ -50,10 +50,12 @@ header figure img {
 }
 h1 {
    font-size: 1.4em;
+   line-height: 1.5em;
    color: var(--color-primary);
 }
 h2 {
    font-size: 1.1em;
+   line-height: 1.5em;
    word-spacing: -7px;
    color: var(--color-primary);
    margin-bottom: 20px;
@@ -66,8 +68,9 @@ dl {
 }
 dt {
    font-size: 0.85em;
+   line-height: 1.5em;
    color: var(--color-primary);
-   margin: 30px 0 10px;
+   margin-top: 30px;
 }
 dd {
    margin-bottom: 10px;
@@ -174,7 +177,7 @@ a[target='_blank'] i {
 .page-container {
    margin: 0 auto;
    padding: 20px;
-   gap: 20px;
+   gap: 15px;
 }
 
 .secondary-text ul {
@@ -218,6 +221,14 @@ a[target='_blank'] i {
 }
 
 @media (max-width: 479px) {
-}
-@media (min-width: 480px) and (max-width: 767px) {
+   h1 {
+      word-spacing: -7px;
+   }
+   h2 {
+      font-size: 1em;
+      margin-bottom: 15px;
+   }
+   .page-container {
+      padding: 15px;
+   }
 }
