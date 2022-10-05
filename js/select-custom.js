@@ -45,7 +45,7 @@ const alphabeticalOrder = (objects) => {
 };
 
 /**
- * LIDA COM O INPUT CLICADO
+ * LIDA COM O 'SELECT' CLICADO
  */
 const handleSelect = (event) => {
    // modifica a identificação dataset padrão
@@ -82,13 +82,17 @@ const createTheme = (themeProps) => {
    return themeItem;
 };
 
-// adiciona todos os itens na lista
+/**
+ * ADICIONA TODOS OS ITENS NA LISTA
+ */
 alphabeticalOrder(themeProps).forEach((props) => {
    const theme = createTheme(props);
    themeList.appendChild(theme);
 });
 
-// abrir ou fechar o theme-list
+/**
+ * ABRIR OU FECHAR O THEME-LIST
+ */
 selected.addEventListener('click', () => {
    themeList.classList.toggle('open');
    selected.classList.toggle('up-arrow');
@@ -97,7 +101,9 @@ selected.addEventListener('click', () => {
    selected.style.border = '2px solid var(--color-hover)';
 });
 
-// fechar theme-list ao clicar fora do theme-container
+/**
+ * FECHAR THEME-LIST AO CLICAR FORA DO THEME-CONTAINER
+ */
 document.addEventListener('click', (event) => {
    // verifica se não foi encontrado (indexOf == -1)
    // dentro do caminho do evento (composedPath) o themeContainer
