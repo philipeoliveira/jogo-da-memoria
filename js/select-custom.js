@@ -1,6 +1,7 @@
 const themeContainer = document.querySelector('.theme-container');
 const selected = document.querySelector('#selected');
 const themeList = document.querySelector('.theme-list');
+const button = document.querySelector('.login-form button');
 
 let inicialText = 'Escolha um tema';
 selected.innerHTML = inicialText;
@@ -57,6 +58,12 @@ const handleSelect = (event) => {
    selected.classList.remove('up-arrow');
 
    selected.style.color = 'var(--color-text)';
+
+   if (event.key === 'Enter') {
+      button.focus();
+      // quando usado após o evento de click
+      selected.style.border = '2px solid var(--color-primary)';
+   }
 };
 
 /**
@@ -72,12 +79,14 @@ const createTheme = (themeProps) => {
    themeInput.setAttribute('name', 'theme');
    themeInput.setAttribute('id', themeProps.id);
    themeLabel.setAttribute('for', themeProps.id);
+   themeLabel.setAttribute('tabindex', '0');
    themeLabel.innerHTML = themeProps.name;
 
    themeItem.appendChild(themeInput);
    themeItem.appendChild(themeLabel);
 
    themeLabel.addEventListener('click', handleSelect);
+   themeLabel.addEventListener('keyup', handleSelect);
 
    return themeItem;
 };
