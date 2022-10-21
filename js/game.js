@@ -8,6 +8,10 @@ const gameFeedbackText = document.querySelector('.game-feedback p');
 const gameFeedbackIcon = document.querySelector('.game-feedback i');
 const gridCards = document.querySelector('.grid-cards');
 
+const audioBtn = document.querySelector('#btn-audio');
+const successAudio = document.querySelector('#success-audio');
+const errorAudio = document.querySelector('#error-audio');
+
 let player = localStorage.getItem('player');
 let cardThemeId = localStorage.getItem('themeId');
 let cardThemeName = localStorage.getItem('themeName');
@@ -15,13 +19,18 @@ let cardThemeName = localStorage.getItem('themeName');
 let firstCard = '';
 let secondCard = '';
 
+//posição e rótulo das cartas no grid
+let cardPosition = 0;
+let firstCardAriaLabel;
+let secondCardAriaLabel;
+
 let alertTime = '29:00'; // 29:00
 let limitTime = '30:00'; // 30:00
 
 // contador de tentativas
 let attemptCounter = 0;
 
-const totalCards = 10;
+let totalCards = 10;
 
 /**
  * NOMES DOS ARQUIVOS DE IMAGEM
@@ -113,9 +122,37 @@ const checkEndGame = () => {
          reloadBtn.classList.add('shake');
       }, 200);
 
+      // mensagem de fim do jogo para o leitor de tela
+      gameFeedbackText.focus();
+
       // zera a contagem de tentativas de match
       attemptCounter = 0;
    }
+};
+
+/**
+ * LIGA OU DESLIGA O AUDIO
+ */
+const AudioOnOff = () => {
+   audioBtn.addEventListener('click', () => {
+      if (successAudio.muted == true) {
+         // habilita audio
+         successAudio.muted = false;
+         errorAudio.muted = false;
+         audioBtn.children[0].classList.remove('ph-speaker-x');
+         audioBtn.children[0].classList.add('ph-speaker-high');
+         audioBtn.setAttribute('title', 'Desligar áudio do jogo');
+         audioBtn.removeAttribute('style');
+      } else {
+         // desabilita audio
+         successAudio.muted = true;
+         errorAudio.muted = true;
+         audioBtn.children[0].classList.remove('ph-speaker-high');
+         audioBtn.children[0].classList.add('ph-speaker-x');
+         audioBtn.setAttribute('title', 'Ligar áudio do jogo');
+         audioBtn.style.backgroundColor = 'var(--color-disabled)';
+      }
+   });
 };
 
 /**
@@ -132,6 +169,13 @@ const checkCards = () => {
       firstCard.firstChild.classList.add('disabled-card');
       secondCard.firstChild.classList.add('disabled-card');
 
+      // toca o audio de sucesso se som estiver habilitado
+      !successAudio.muted && successAudio.play();
+
+      // desabilita o acesso via tecla tab da front face
+      firstCard.firstChild.removeAttribute('tabindex');
+      secondCard.firstChild.removeAttribute('tabindex');
+
       // zera as variáveis permitindo uma nova rodada
       firstCard = '';
       secondCard = '';
@@ -146,7 +190,24 @@ const checkCards = () => {
          firstCard.classList.remove('reveal-card');
          secondCard.classList.remove('reveal-card');
 
+         // toca o audio de erro se som estiver habilitado
+         !errorAudio.muted && errorAudio.play();
+
          handleCardHover([firstCard, secondCard]);
+
+         // habilita o acesso via tecla tab da front face
+         firstCard.firstChild.setAttribute('tabindex', 0);
+         secondCard.firstChild.setAttribute('tabindex', 0);
+
+         // remove as tags de aviso ao leitor de tela para não acumular mudanças
+         firstCard.removeAttribute('role');
+         firstCard.removeAttribute('aria-live');
+         secondCard.removeAttribute('role');
+         secondCard.removeAttribute('aria-live');
+
+         // reinicia o label somente com a posição da carta e sem o número dela revelado
+         firstCard.firstChild.setAttribute('aria-label', firstCardAriaLabel);
+         secondCard.firstChild.setAttribute('aria-label', secondCardAriaLabel);
 
          // zera as variáveis permitindo uma nova rodada
          firstCard = '';
@@ -173,32 +234,67 @@ const handleAttemptCounter = () => {
  * CHAMA A FUNÇÃO QUE TRATA DAS TENTATIVAS DE MATCH,
  * CHAMA A FUNÇÃO QUE VERIFICA O MATCH
  */
-const handleRevealCard = ({ target }) => {
-   // garante que NÃO VIRA se já estiver revelada
-   // ou que NÃO REVELA se o limite de tempo já estiver sido atingido
-   if (
-      target.parentNode.className.includes('reveal-card') ||
-      timer.innerHTML >= limitTime
-   ) {
-      return;
-   }
+const handleRevealCard = (event) => {
+   let cardImage;
+   let cardImageNumber;
 
-   // verifica qual é a carta, REVELA e armazena
-   // target.classList[0] !== 'card' corrige bug do clique arrastado sobre o li
-   if (firstCard === '' && target.classList[0] !== 'card') {
-      target.parentNode.classList.add('reveal-card');
-      firstCard = target.parentNode;
-   } else if (secondCard === '' && target.classList[0] !== 'card') {
-      target.parentNode.classList.add('reveal-card');
-      secondCard = target.parentNode;
+   if (event.type === 'click' || event.key === 'Enter') {
+      // garante que NÃO VIRA se já estiver revelada
+      // ou que NÃO REVELA se o limite de tempo já estiver sido atingido
+      if (
+         event.target.parentNode.className.includes('reveal-card') ||
+         timer.innerHTML >= limitTime
+      ) {
+         return;
+      }
 
-      handleAttemptCounter();
+      // verifica qual é a carta, REVELA e armazena
+      // target.classList[0] !== 'card' corrige bug do clique arrastado sobre o li
+      if (firstCard === '' && event.target.classList[0] !== 'card') {
+         firstCard = event.target.parentNode;
+         firstCard.classList.add('reveal-card');
+         // o leitor de tela é avisado quando houver alteração no elemento
+         firstCard.setAttribute('role', 'status');
+         firstCard.setAttribute('aria-live', 'polite');
 
-      checkCards();
-   }
+         // disponibiliza para o leitor de tela o número da carta revelada
+         cardImage = firstCard.dataset.cardImage;
+         cardImageNumber = cardImage.substring(cardImage.lastIndexOf('-') + 1);
+         firstCardAriaLabel = event.target.ariaLabel;
+         firstCard.children[0].setAttribute(
+            'aria-label',
+            'A ' +
+               firstCardAriaLabel +
+               ' é a Carta de número ' +
+               cardImageNumber
+         );
+      } else if (secondCard === '' && event.target.classList[0] !== 'card') {
+         secondCard = event.target.parentNode;
+         secondCard.classList.add('reveal-card');
+         // o leitor de tela é avisado quando houver alteração no elemento
+         secondCard.setAttribute('role', 'status');
+         secondCard.setAttribute('aria-live', 'polite');
 
-   if (target.classList[0] !== 'card') {
-      handleCardHover([target.parentNode]);
+         // disponibiliza para o leitor de tela o número da carta revelada
+         cardImage = secondCard.dataset.cardImage;
+         cardImageNumber = cardImage.substring(cardImage.lastIndexOf('-') + 1);
+         secondCardAriaLabel = event.target.ariaLabel;
+         secondCard.children[0].setAttribute(
+            'aria-label',
+            'A ' +
+               secondCardAriaLabel +
+               ' é a carta de número ' +
+               cardImageNumber
+         );
+
+         handleAttemptCounter();
+
+         checkCards();
+      }
+
+      if (event.target.classList[0] !== 'card') {
+         handleCardHover([event.target.parentNode]);
+      }
    }
 };
 
@@ -219,6 +315,13 @@ const createCard = (cardImage) => {
 
    // cria identificação para cada carta
    cardItem.setAttribute('data-card-image', cardImage);
+
+   // cria recursos para acessibilidade via teclado
+   cardPosition = cardPosition + 1;
+   frontFace.setAttribute('aria-label', 'Carta na posição ' + cardPosition);
+   frontFace.setAttribute('tabindex', 0);
+
+   cardItem.addEventListener('keyup', handleRevealCard);
 
    cardItem.addEventListener('click', handleRevealCard);
 
@@ -296,6 +399,9 @@ const checkTimeLimit = () => {
          );
       }, 200);
 
+      // mensagem de fim do jogo para o leitor de tela
+      gameFeedbackText.focus();
+
       // zera a contagem de tentativas de match
       attemptCounter = 0;
    }
@@ -335,11 +441,14 @@ window.onload = () => {
    }
 
    playerEl.innerHTML = player;
+   playerEl.setAttribute('title', player);
    themeEl.innerHTML = cardThemeName;
+   themeEl.setAttribute('title', cardThemeName);
 
    if (window.location.pathname === '/pages/game.html') {
       timerOn();
       loadGame();
       reloadPage(reloadBtn);
+      AudioOnOff();
    }
 };

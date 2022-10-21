@@ -32,7 +32,11 @@
       <div id="particles-js"></div>
       <div class="page-container game-page-container flex-col-center">
          <header>
-            <a href="../index.html" title="Ir para página de Login">
+            <a
+               href="../index.html"
+               title="Logotipo com link para página de Login"
+               aria-label="Logotipo com link para página de Login"
+            >
                <figure class="flex-col-center">
                   <img
                      src="../images/icone-pensando.png"
@@ -51,7 +55,7 @@
                <h1>Jogo da Memória</h1>
                <div class="game-actions">
                   <div class="game-info">
-                     <span class="icon-text" title="Nome do(a) jogador(a)">
+                     <span class="icon-text" title="Nome do jogador">
                         <i class="ph-user"></i>
                         <p id="player"></p>
                      </span>
@@ -63,7 +67,8 @@
                   <a
                      href="../index.html"
                      title="Trocar tema"
-                     class="icon-text btn-icon game-restart active"
+                     class="icon-text btn-icon btn-rotate-effect active"
+                     role="button"
                   >
                      <i class="ph-arrows-clockwise"></i>
                   </a>
@@ -74,7 +79,7 @@
             <div class="game-feedback">
                <span class="icon-text">
                   <i class="ph-smiley-wink"></i>
-                  <p>Descubra as cartas iguais. Boa sorte!</p>
+                  <p role="status">Descubra as cartas iguais. Boa sorte!</p>
                </span>
             </div>
             <div class="game-actions">
@@ -90,12 +95,27 @@
                </div>
                <button
                   title="Reiniciar o jogo"
-                  class="icon-text game-restart active"
+                  class="icon-text btn-rotate-effect active"
                   id="btn-reload"
                >
                   <i class="ph-arrow-clockwise"></i>
                </button>
+               <button
+                  title="Desligar áudio do jogo"
+                  class="icon-text btn-zoom-effect"
+                  id="btn-audio"
+               >
+                  <i class="ph-speaker-high"></i>
+               </button>
             </div>
+            <audio id="success-audio" preload="auto">
+               <source src="../audios/success_mp3.mp3" type="audio/mp3" />
+               <source src="../audios/success_ogg.ogg" type="audio/ogg" />
+            </audio>
+            <audio id="error-audio" preload="auto">
+               <source src="../audios/error_mp3.mp3" type="audio/mp3" />
+               <source src="../audios/error_ogg.ogg" type="audio/ogg" />
+            </audio>
             <ul class="grid-cards"></ul>
          </main>
          <footer class="secondary-text">
@@ -119,6 +139,7 @@
                      title="Deletar os dados do login e sair do jogo"
                      id="logout"
                      tabindex="0"
+                     aria-label="Deletar os dados do login e sair do jogo"
                      >Sair</a
                   >
                </li>

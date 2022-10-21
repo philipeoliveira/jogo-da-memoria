@@ -40,13 +40,21 @@
 .game-info i {
    color: var(--color-primary);
 }
-.game-restart {
+.btn-rotate-effect,
+.btn-zoom-effect {
    font-size: 1em;
    border-radius: 8px;
    padding: 7px;
 }
-.game-restart:hover i {
+.btn-rotate-effect:hover i {
    animation: rotate 250ms ease-in;
+}
+.btn-zoom-effect:hover i {
+   transform: scale(1.2);
+   transition: transform 300ms ease;
+}
+.btn-zoom-effect {
+   background-color: var(--color-hover);
 }
 
 /* BODY */
@@ -143,8 +151,10 @@
 .handle-card-hover {
    cursor: pointer;
 }
+.handle-card-hover .front-face:focus,
 .handle-card-hover:hover {
    outline: 1px inset var(--color-opacity);
+   transition: all 1000ms ease;
 }
 .text-alert {
    animation: text-alert 1s infinite;
