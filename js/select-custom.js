@@ -15,6 +15,7 @@ const themeProps = [
    { id: 'profissoes', name: 'Profissões' },
    { id: 'baralho', name: 'Baralho' },
    { id: 'alfabeto', name: 'Alfabeto' },
+   { id: 'mario', name: 'Mario Bros' },
 ];
 
 // seleciona o primeiro item da lista para o tema padrão,
