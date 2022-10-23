@@ -13,5 +13,3 @@
 <li>CSS 3</li>
 <li>JavaScript</li>
 </ul>
-<hr>
-<h2>Layout</h2>
