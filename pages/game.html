@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
    <head>
-      <meta charset="UTF-8" />
-      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta
          name="description"
          content="Tradicional Jogo da Memória onde todas
       as cartas estão viradas e o jogador a cada rodada tenta desvirar duas
       iguais, o objetivo é desvirar todas as cartas com menos tentativas
       possíveis."
-      />
-      <meta name="author" content="Philipe Oliveira" />
+     >
+      <meta name="author" content="Philipe Oliveira">
 
       <link
          rel="shortcut icon"
          href="../images/favicon.ico"
          type="image/x-icon"
-      />
-      <link rel="stylesheet" href="../css/global.css" />
-      <link rel="stylesheet" href="../css/game.css" />
-      <link rel="stylesheet" href="../css/confetti.css" />
+     >
+      <link rel="stylesheet" href="../css/global.css">
+      <link rel="stylesheet" href="../css/game.css">
+      <link rel="stylesheet" href="../css/confetti.css">
 
       <script defer src="https://unpkg.com/phosphor-icons"></script>
       <script defer src="../js/global.js"></script>
@@ -42,7 +42,7 @@
                      src="../images/icone-pensando.png"
                      alt="Ícone com desenho de um jovem pensando"
                      class="game-page-logo"
-                  />
+                 >
                   <figcaption hidden>
                      Logotipo de forma redonda em duas tonalidades claras de
                      marrom, com um desenho dentro de um jovem de cabelos
@@ -55,14 +55,14 @@
                <h1>Jogo da Memória</h1>
                <div class="game-actions">
                   <div class="game-info">
-                     <span class="icon-text" title="Nome do jogador">
+                     <div class="icon-text" title="Nome do jogador">
                         <i class="ph-user"></i>
                         <p id="player"></p>
-                     </span>
-                     <span class="icon-text" title="Tema das cartas">
+                     </div>
+                     <div class="icon-text" title="Tema das cartas">
                         <i class="ph-check"></i>
                         <p id="theme"></p>
-                     </span>
+                     </div>
                   </div>
                   <a
                      href="../index.html"
@@ -77,21 +77,21 @@
          </header>
          <main>
             <div class="game-feedback">
-               <span class="icon-text">
+               <div class="icon-text">
                   <i class="ph-smiley-wink"></i>
                   <p role="status">Descubra as cartas iguais. Boa sorte!</p>
-               </span>
+               </div>
             </div>
             <div class="game-actions">
                <div class="game-info">
-                  <span class="icon-text" title="Tentativas efetuadas">
+                  <div class="icon-text" title="Tentativas efetuadas">
                      <i class="ph-crosshair"></i>
                      <p id="attempt-counter">0<span> tentativa</span></p>
-                  </span>
-                  <span class="icon-text" title="Tempo corrente">
+                  </div>
+                  <div class="icon-text" title="Tempo corrente">
                      <i class="ph-timer"></i>
                      <p id="timer"></p>
-                  </span>
+                  </div>
                </div>
                <button
                   title="Reiniciar o jogo"
@@ -109,12 +109,12 @@
                </button>
             </div>
             <audio id="success-audio" preload="auto">
-               <source src="../audios/success_mp3.mp3" type="audio/mp3" />
-               <source src="../audios/success_ogg.ogg" type="audio/ogg" />
+               <source src="../audios/success_mp3.mp3" type="audio/mp3">
+               <source src="../audios/success_ogg.ogg" type="audio/ogg">
             </audio>
             <audio id="error-audio" preload="auto">
-               <source src="../audios/error_mp3.mp3" type="audio/mp3" />
-               <source src="../audios/error_ogg.ogg" type="audio/ogg" />
+               <source src="../audios/error_mp3.mp3" type="audio/mp3">
+               <source src="../audios/error_ogg.ogg" type="audio/ogg">
             </audio>
             <ul class="grid-cards"></ul>
          </main>
